@@ -1,0 +1,62 @@
+#include <iostream>
+
+using namespace std;
+void insertMatrix(int matrix[10][10],int n,int m)
+{
+    int number;
+
+    for(int i =0; i<n; i++)
+        {
+        for(int j=0; j<m; j++)
+            {
+            cin>>number;
+            matrix[i][j]=number;
+            }
+        }
+}
+
+void printMatrix(int matrix[10][10],int n,int m)
+{
+    for(int i =0; i<n; i++)
+        {
+        for(int j=0; j<m; j++)
+            {
+            cout<<matrix[i][j]<<"\t";
+            }
+        cout<<endl;
+        }
+}
+
+void transformTheNumberIntoItsOwnTens(int matrix[10][10],int n,int m,int matrixTwo[10][10])
+{
+    for(int i =0; i<n; i++)
+        {
+        for(int j=0; j<m; j++)
+            {
+            matrixTwo[i][j]=(matrix[i][j]/10)%10;
+            }
+        }
+}
+
+int main()
+{
+    int matrix[10][10];
+    int matrixTwo[10][10];
+    int n,m,sumResult;
+    double averageResult;
+
+    cout<<"Vnesi broj na redovi i koloni na matricata:"<<endl;
+    cin>>n>>m;
+
+    cout<<"Vnesi elementi vo matricata:"<<endl;
+    insertMatrix(matrix,n,m);
+
+    cout<<"Vnesena matrica:"<<endl;
+    printMatrix( matrix,n,m);
+
+    cout<<"Matrica co desetki:"<<endl;
+    transformTheNumberIntoItsOwnTens(matrix,n,m,matrixTwo);
+    printMatrix( matrixTwo,n,m);
+
+    return 0;
+}
