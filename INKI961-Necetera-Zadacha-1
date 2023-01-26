@@ -1,0 +1,117 @@
+#include <iostream>
+
+using namespace std;
+
+void insertMatrix(int matrix[10][10],int n,int m)
+{
+    int number;
+
+    for(int i =0; i<n; i++)
+        {
+        for(int j=0; j<m; j++)
+            {
+            cin>>number;
+            matrix[i][j]=number;
+            }
+        }
+}
+
+void printMatrix(int matrix[10][10],int n,int m)
+{
+    for(int i =0; i<n; i++)
+        {
+        for(int j=0; j<m; j++)
+            {
+            cout<<matrix[i][j]<<"\t";
+            }
+        cout<<endl;
+        }
+}
+
+void findAndPrintMaxValueAndPosition(int matrix[10][10],int n,int m)
+{
+    int maxValue=matrix[0][0];
+    int maxPositionI;
+    int maxPositionJ;
+
+    for(int i =0; i<n; i++)
+        {
+        for(int j=0; j<m; j++)
+            {
+            if(maxValue<matrix[i][j])
+                {
+                maxValue=matrix[i][j];
+                maxPositionI=i;
+                maxPositionJ=j;
+                }
+            }
+        }
+    cout<<"Maksimalna vrednost e: "<<maxValue<<"\nna posicija po red: "<<maxPositionI+1<<"\npo kolona: "<<maxPositionJ+1<<endl;
+}
+
+void printAndFindMinValueAndPosition(int matrix[10][10],int n,int m)
+{
+    int minValue=matrix[0][0];
+    int minPositionI;
+    int minPositionJ;
+
+    for(int i =0; i<n; i++)
+        {
+        for(int j=0; j<m; j++)
+            {
+            if(minValue>matrix[i][j])
+                {
+                minValue=matrix[i][j];
+                minPositionI=i;
+                minPositionJ=j;
+                }
+            }
+        }
+    cout<<"Minimalna vrednost e: "<<minValue<<"\nna posicija po red: "<<minPositionI+1<<"\npo kolona: "<<minPositionJ+1<<endl;
+}
+
+int sumOfNumbersInMatrix(int matrix[10][10],int n,int m)
+{
+    int sumOfNumbers=0;
+
+    for(int i =0; i<n; i++)
+        {
+        for(int j=0; j<m; j++)
+            {
+            sumOfNumbers+=matrix[i][j];
+            }
+        }
+
+    return sumOfNumbers;
+}
+
+int averageOfNumbersInMatrix(int matrix[10][10],int n,int m)
+{
+    int averageOfNumbers;
+
+    averageOfNumbers=sumOfNumbersInMatrix(matrix,n,m)/(n*m);
+
+    return averageOfNumbers;
+}
+
+int main()
+{
+    int matrix[10][10];
+    int n,m;
+
+    cout<<"Vnesi broj na redovi i koloni na matricata:"<<endl;
+    cin>>n>>m;
+
+    cout<<"Vnesi elementi vo matricata:"<<endl;
+    insertMatrix(matrix,n,m);
+    cout<<"Vnesenata matrica e:"<<endl;
+    printMatrix( matrix,n,m);
+
+    printAndFindMaxValueAndPosition(matrix,n,m);
+    printAndFindMinValueAndPosition(matrix,n,m);
+
+    cout<<"Sumata na broevi vo matricata e: "<<sumOfNumbersInMatrix(matrix,n,m)<<endl;
+    cout<<"Prosechna vrednost vo matricata e: "<<averageOfNumbersInMatrix(matrix,n,m)<<endl;
+
+    return 0;
+}
