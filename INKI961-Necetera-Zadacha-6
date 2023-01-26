@@ -1,0 +1,106 @@
+#include <iostream>
+
+using namespace std;
+
+void insertMatrix(int matrix[10][10],int n,int m)
+{
+    int number;
+
+    for(int i =0; i<n; i++)
+        {
+        for(int j=0; j<m; j++)
+            {
+            cin>>number;
+            matrix[i][j]=number;
+            }
+        }
+}
+
+void printMatrix(int matrix[10][10],int n,int m)
+{
+    for(int i =0; i<n; i++)
+        {
+        for(int j=0; j<m; j++)
+            {
+            cout<<matrix[i][j]<<"\t";
+            }
+        cout<<endl;
+        }
+}
+
+int main()
+{
+    int matrix[10][10];
+    int n,m;
+
+    cout<<"Vnesi broj na redovi i koloni na matricata:"<<endl;
+    cin>>n>>m;
+
+    cout<<"Vnesi elementi vo matricata:"<<endl;
+    insertMatrix(matrix,n,m);
+
+    cout<<"Vnesenata matrica e:"<<endl;
+    printMatrix( matrix,n,m);
+
+    for(int i =0; i<n; i++)
+        {
+        bool isIncreasingRow=true;
+        bool isDecreasingRow=true;
+
+        for(int j=0; j<m-1; j++)
+            {
+            if(matrix[i][j]<=matrix[i][j+1])
+                {
+                isDecreasingRow=false;
+                }
+            if(matrix[i][j]>=matrix[i][j+1])
+                {
+                isIncreasingRow=false;
+                }
+            }
+        if(isIncreasingRow==true)
+            {
+            cout<<"Redot "<<i<<" e rastechki!"<<endl;
+            }
+        else if(isDecreasingRow==true)
+            {
+            cout<<"Redot "<<i<<" e opagachki!"<<endl;
+            }
+        else
+            {
+            cout<<"Redot "<<i<<" ne e rastechki ni opagachki"<<endl;
+            }
+        }
+
+    for(int i =0; i<n; i++)
+        {
+        bool isIncreasingColumn=true;
+        bool isDecreasingColumn=true;
+
+        for(int j=0; j<m-1; j++)
+            {
+            if(matrix[j][i]<=matrix[j+1][i])
+                {
+                isDecreasingColumn=false;
+                }
+            if(matrix[j][i]>=matrix[j+1][i])
+                {
+                isIncreasingColumn=false;
+                }
+            }
+        if(isIncreasingColumn==true)
+            {
+            cout<<"Colonata "<<i<<" e rastechki!"<<endl;
+            }
+        else if(isDecreasingColumn==true)
+            {
+            cout<<"Colonata "<<i<<" e opagachki!"<<endl;
+            }
+        else
+            {
+            cout<<"Colonata "<<i<<" ne e rastechki ni opagachki"<<endl;
+            }
+        }
+
+    return 0;
+}
