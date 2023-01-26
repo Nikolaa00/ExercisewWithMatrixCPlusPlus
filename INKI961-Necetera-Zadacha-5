@@ -1,0 +1,88 @@
+
+#include <iostream>
+
+using namespace std;
+
+void insertMatrix(int matrix[10][10],int n,int m)
+{
+    int number;
+
+    for(int i =0; i<n; i++)
+        {
+        for(int j=0; j<m; j++)
+            {
+            cin>>number;
+            matrix[i][j]=number;
+            }
+        }
+}
+
+void printMatrix(int matrix[10][10],int n,int m)
+{
+    for(int i =0; i<n; i++)
+        {
+        for(int j=0; j<m; j++)
+            {
+            cout<<matrix[i][j]<<"\t";
+            }
+        cout<<endl;
+        }
+}
+
+bool numberIsContainedInMatrix(int matrix[10][10],int n,int m,int number)
+{
+    for(int i =0; i<n; i++)
+        {
+        for(int j=0; j<m; j++)
+            {
+            if(matrix[i][j]==number)
+                {
+                return true;
+                }
+            }
+        }
+    return false;
+}
+
+int main()
+{
+    int matrix[10][10];
+    int n,m;
+
+    int matrixWithoutDuplicates[10][10];
+
+    cout<<"Vnesi broj na redovi i koloni na matricata:"<<endl;
+    cin>>n>>m;
+
+    cout<<"Vnesi elementi vo matricata:"<<endl;
+    insertMatrix(matrix,n,m);
+
+    cout<<"Vnesenata matrica e:"<<endl;
+    printMatrix( matrix,n,m);
+
+    cout<<"Matricata bez duplikati e:"<<endl;
+
+    for(int i =0; i<n; i++)
+        {
+        for(int j=0; j<m; j++)
+            {
+            matrixWithoutDuplicates[i][j]=-1;
+            }
+        }
+
+    for(int i =0; i<n; i++)
+        {
+        for(int j=0; j<m; j++)
+            {
+            bool numberExisting=numberIsContainedInMatrix(matrixWithoutDuplicates,n,m,matrix[i][j]);
+            if(!numberExisting)
+                {
+                matrixWithoutDuplicates[i][j]=matrix[i][j];
+                }
+            }
+        }
+
+    printMatrix( matrixWithoutDuplicates,n,m);
+
+    return 0;
+}
