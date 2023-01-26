@@ -1,0 +1,100 @@
+#include <iostream>
+
+using namespace std;
+
+void insertMatrix(int matrixOne[10][10],int n,int m)
+{
+    int number;
+
+    for(int i =0; i<n; i++)
+        {
+        for(int j=0; j<m; j++)
+            {
+            cin>>number;
+            matrixOne[i][j]=number;
+            }
+        }
+}
+
+void printMatrix(int matrixOne[10][10],int n,int m)
+{
+    for(int i =0; i<n; i++)
+        {
+        for(int j=0; j<m; j++)
+            {
+            cout<<matrixOne[i][j]<<"\t";
+            }
+        cout<<endl;
+        }
+}
+bool  checkRowsAndColumnsAreEquel(int n,int m,int d,int b)
+{
+    if(n!=d&&m!=b)
+        {
+        return false;
+        }
+    return true;
+}
+bool  matrixIsEquelToTheOtherMatrix(int matrixOne[10][10],int matrixTwo[10][10],int n,int m,int d,int b)
+{
+    if(n!=d&&m!=b)
+        {
+        return false;
+        }
+    for(int i =0; i<n; i++)
+        {
+        for(int j=0; j<m; j++)
+            {
+            if(matrixOne[i][j]!=matrixTwo[i][j])
+                {
+                return false;
+                }
+            }
+        }
+    return true;
+}
+
+int main()
+{
+    int matrixOne[10][10];
+    int matrixTwo[10][10];
+    int n,m,d,b;
+
+    cout<<"Vnesi broj na redovi i koloni na matricata eden:"<<endl;
+    cin>>n>>m;
+
+    cout<<"Vnesi broj na redovi i koloni na matricata dva:"<<endl;
+    cin>>d>>b;
+
+    bool checkRowsAndColumns=checkRowsAndColumnsAreEquel(n,m,d,b);
+    if(!checkRowsAndColumns)
+        {
+        cout<<"Matricite ne se ednakvi!"<<endl;
+        }
+    if(checkRowsAndColumns)
+        {
+        cout<<"Vnesi elementi na prvata matrica:"<<endl;
+        insertMatrix(matrixOne,n,m);
+
+        cout<<"Prvata matrica e:"<<endl;
+        printMatrix( matrixOne,n,m);
+
+        cout<<"Vnesi elementi na vtorata matrica:"<<endl;
+        insertMatrix(matrixTwo,d,b);
+
+        cout<<"Vtorata matrica e:"<<endl;
+        printMatrix( matrixTwo,d,b);
+
+        bool isEquel = matrixIsEquelToTheOtherMatrix(matrixOne,matrixTwo,n,m,d,b);
+
+        if(isEquel)
+            {
+            cout<<"Matricite se ednakvi!"<<endl;
+            }
+        else if(!isEquel)
+            {
+            cout<<"Matricite ne se ednakvi!"<<endl;
+            }
+        }
+    return 0;
+}
